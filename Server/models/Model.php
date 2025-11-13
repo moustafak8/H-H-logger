@@ -96,7 +96,7 @@ abstract class Model
             }
             $values[] = $val;
         }
-        $types .= 'i';// hay lal ID
+        $types .= 'i';
         $values[] = $id;
         $query->bind_param($types, ...$values);
         if ($query->execute()) {
