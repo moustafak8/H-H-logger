@@ -5,11 +5,6 @@
   text-transform: capitalize;
   transition: all 0.2s linear;
 }
-body {
-  background: rgba(255, 255, 255, 0.7) url("../asset/main.jpg") center center fixed;
-  background-size: cover;
-  background-blend-mode: darken;
-}
 header {
   position: fixed;
   top: 0;
@@ -46,6 +41,9 @@ section {
   min-height: 100vh;
   align-items: center;
   justify-content: space-between;
+  background: rgba(255, 255, 255, 0.7) url("../asset/main.jpg") center center fixed;
+  background-size: cover;
+  background-blend-mode: darken;
   text-align: center;
   padding: 2rem 9% 2rem 9%;
   padding-top: 8rem;
