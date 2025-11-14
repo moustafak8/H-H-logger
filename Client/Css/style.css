@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
+body {
+  background: rgba(255, 255, 255, 0.7) url("../asset/main.jpg") center center fixed;
+  background-size: cover;
+  background-blend-mode: darken;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 9%;
+  height: 10px;
+  background: transparent;
+}
+
+header .logo {
+  text-decoration: none;
+  font-size: 25px;
+  margin-left: -120px;
+  font-weight: bolder;
+  color:#007BFF;
+}
+
+header .logo i {
+  text-decoration: none;
+  padding-right: 3px;
+}
+section {
+  padding: 2rem ;
+}
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 2rem 9% 2rem 9%;
+  padding-top: 8rem;
+}
+.home .content {
+  text-align: left;
+  flex: 1;
+  color: #007BFF;
+  max-width: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.sign-up {
+  flex: 1;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.sign-up h1 {
+  margin-bottom: 1.5rem;
+  color: #007BFF;
+  font-size: 1.5rem;
+}
+.sign-up input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+.sign-up input:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.login-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 40px;
+  color: white;
+  background: #007BFF;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  width: 150px;
+  cursor: pointer;
+  z-index: 1001;
+}
