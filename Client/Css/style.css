@@ -36,28 +36,40 @@ section {
 }
 .home {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  min-height: 100vh;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  min-height: 100vh;
   background: rgba(255, 255, 255, 0.7) url("../asset/main.jpg") center center fixed;
   background-size: cover;
   background-blend-mode: darken;
   text-align: center;
   padding: 2rem 9% 2rem 9%;
-  padding-top: 8rem;
+  padding-top: 4rem;
 }
 .home .content {
-  text-align: left;
-  flex: 1;
+  text-align: center;
   color: #007BFF;
-  max-width: 50%;
   background: rgba(255, 255, 255, 0.9);
-  padding: 2rem;
-  border-radius: 10px;
+  padding: 3rem;
+  border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
+.home button {
+  padding: 1rem 2rem;
+  background: #007BFF;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.home button:hover {
+  background: #596aff;
+}
+/*
 .sign-up {
   flex: 1;
   max-width: 400px;
@@ -86,6 +98,7 @@ section {
   border-color: #007BFF;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+  */
 .login-button {
   position: absolute;
   top: 20px;
