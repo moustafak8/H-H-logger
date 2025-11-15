@@ -1,7 +1,7 @@
 <?php
 include("Model.php");
 
-class Car extends Model {
+class User extends Model {
     private string $username;
     private string $password;
     private string $role_id;
@@ -22,7 +22,7 @@ class Car extends Model {
         $this->username = $username;
     }
     public function __toString(){
-        return $this->id . " | " . $this->username . " | " . $this->password. " | " . $this->role_id;
+        return  $this->username . " | " . $this->password. " | " . $this->role_id;
     }
     
     public function toArray(){
