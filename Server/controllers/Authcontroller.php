@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . "/../services/ResponsiveService.php");
-require_once(__DIR__ . "/../services/Authenticatio.php");
+require_once(__DIR__ . "/../services/Authentication.php");
 
 class AuthController{
     function login(){
