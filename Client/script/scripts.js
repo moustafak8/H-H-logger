@@ -1,6 +1,7 @@
 const BASE_URL = "http://localhost/H-H-logger/Server/users/";
 const form = document.querySelector(".form");
-document.getElementById("adding").addEventListener("submit", function (event) {
+if (document.getElementById("adding")) {
+  document.getElementById("adding").addEventListener("submit", function (event) {
   event.preventDefault();
   const email = document.getElementById("em").value.trim();
   const password = document.getElementById("pass").value.trim();
@@ -42,9 +43,11 @@ document.getElementById("adding").addEventListener("submit", function (event) {
       console.error("Error:", error);
       alert("An error occurred while adding the user.");
     });
-});
+  });
+}
 
-document.getElementById("login").addEventListener("submit", function (event) {
+if (document.getElementById("login")) {
+  document.getElementById("login").addEventListener("submit", function (event) {
   event.preventDefault();
   const email = document.getElementById("username").value.trim();
   const password = document.getElementById("pass").value.trim();
@@ -65,17 +68,18 @@ document.getElementById("login").addEventListener("submit", function (event) {
   document.getElementById("username").value = "";
   document.getElementById("pass").value = "";
   axios
-    .post(BASE_URL + "create", user)
+    .post(BASE_URL + "login", user)
     .then((response) => {
       console.log(response.data);
-      if (response.data.status === 200 && response.data.data.id) {
+      if (response.data.status === 200 && response.data.data.user) {
         window.location.href = "user.html";
       } else {
-        alert("User not found: " + (response.data.data.error || response.data.data.message || "Unknown error"));
+        alert("Login failed: " + (response.data.data.message || "Unknown error"));
       }
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("An error occurred while adding the user.");
+      alert("An error occurred while logging in.");
     });
-});
+  });
+}

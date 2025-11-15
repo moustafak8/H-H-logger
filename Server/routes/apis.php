@@ -4,5 +4,5 @@ $apis = [
     '/users/create' => ['controller' => 'usercontroller', 'method' => 'newUser'],
     '/users/update' => ['controller' => 'usercontroller', 'method' => 'updateuser'],
     '/users/delete' => ['controller' => 'usercontroller', 'method' => 'deleteuser'],
-    '/user/login' => ['controller' => 'Authcontroller', 'method' => 'login']
+    '/users/login' => ['controller' => 'Authcontroller', 'method' => 'login']
 ];
