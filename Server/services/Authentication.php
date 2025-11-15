@@ -1,7 +1,6 @@
 <?php
-require_once("../connection/connection.php");
-require_once("ResponsiveService.php");
-
+require_once(__DIR__ . "/ResponsiveService.php");
+require_once(__DIR__ . "/../connection/connection.php");
 class AuthenticationService {
 
     public static function authenticate($username, $password) {
