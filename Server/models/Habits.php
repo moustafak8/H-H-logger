@@ -1,7 +1,7 @@
 <?php
 include("Model.php");
 
-class User extends Model {
+class Habits extends Model {
     private string $name;
     private string $category;
     private string $unit;
