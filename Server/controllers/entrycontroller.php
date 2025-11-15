@@ -34,9 +34,9 @@ class entrycontroller
         $entry = [
             "entry_date" => $data['entry_date'],
             "raw_text" => $data['raw_text'],
-            "parsed_json" => $data['parsed_json'] ?? null,
-            "parse_status" => $data['parse_status'] ?? "pending",
-            "user_id" => $data['user_id'] ?? null
+            "parsed_json" => $data['parsed_json'],
+            "parse_status" => "pending",
+            "user_id" => $data['user_id']
         ];
         $new = new Entry($entry);
         $insertedId = $new->add($connection, $entry);
@@ -54,9 +54,9 @@ class entrycontroller
         $newdata = [
             "entry_date" => $data['entry_date'],
             "raw_text" => $data['raw_text'],
-            "parsed_json" => $data['parsed_json'] ?? null,
+            "parsed_json" => $data['parsed_json'] ,
             "parse_status" => $data['parse_status'] ?? "pending",
-            "user_id" => $data['user_id'] ?? null
+            "user_id" => $data['user_id'] 
         ];
         $row = Entry::update($connection, $id, $newdata);
         if ($row) {
