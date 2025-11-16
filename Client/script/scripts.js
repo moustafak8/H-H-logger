@@ -73,7 +73,8 @@ if (document.getElementById("login")) {
       console.log(response.data);
       if (response.data.status === 200 && response.data.data.user) {
         localStorage.setItem('userEmail', email);
-        window.location.href = "user.html";
+        localStorage.setItem('user_id', response.data.data.user.id.toString());
+        window.location.href = "../user/index.html";
       } else {
         alert("Login failed: " + (response.data.data.message || "Unknown error"));
       }

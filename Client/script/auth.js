@@ -4,7 +4,7 @@ function isLoggedIn() {
 }
 function logout() {
   localStorage.removeItem('userEmail');
-  window.location.href = 'login.html';
+  window.location.href = '../login/login.html';
 }
 function requireLogin() {
   if (!isLoggedIn()) {

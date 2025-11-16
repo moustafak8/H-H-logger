@@ -9,6 +9,7 @@ class Entry extends Model {
     private ?int $user_id;
 
     protected static string $table = "entries";
+    protected static string $primary_key = "user_id";
 
     public function __construct(array $data){
         $this->entry_date = $data["entry_date"];
