@@ -6,7 +6,7 @@ class Entry extends Model {
     private string $raw_text;
     private string $parsed_json;
     private string $parse_status;
-    private int $user_id;
+    private ?int $user_id;
 
     protected static string $table = "entries";
 
