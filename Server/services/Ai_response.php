@@ -24,7 +24,7 @@ class Ai_response
             "temperature" => 0.2
         ];
         $headers = [
-            "Authorization: Bearer $apiKey",
+            "Authorization: Bearer " . $apiKey,
             "Content-Type: application/json",
         ];
         $ch = curl_init("https://api.openai.com/v1/chat/completions");
@@ -33,16 +33,22 @@ class Ai_response
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if (!$response) return json_encode(["error" => "No response from OpenAI API"]);
+        if (!$response) return json_encode(["error" => "No response from AI API"]);
 
         $result = json_decode($response, true);
-        if (isset($result['error'])) return json_encode(["error" => $result['error']['message']]);
+        if ($httpCode !== 200) {
+            $errorMsg = isset($result['error']) ? $result['error']['message'] : "HTTP $httpCode error";
+            return json_encode(["error" => $errorMsg]);
+        }
 
-        $content = $result['choices'][0]['message']['content'] ?? "[]";
+        $content = $result['choices'][0]['message']['content'] ?? "";
+        if (empty($content)) return json_encode(["error" => "Empty AI response"]);
+
         $decoded = json_decode($content, true);
-        if (json_last_error() !== JSON_ERROR_NONE) return json_encode(["error" => "Invalid JSON from AI"]);
+        if (json_last_error() !== JSON_ERROR_NONE) return json_encode(["error" => "Invalid JSON from AI: " . json_last_error_msg()]);
         return json_encode($decoded);
     }
 }
