@@ -31,11 +31,30 @@
             <a href="">Weekly summary</a>
             <a href="">Nutrition Coach</a>
         </nav>
+        <h1 class="title">Dashboard</h1>
     <div class="text_input">
         <h3>Free Text Input</h3>
         <textarea  cols="20" rows="4" placeholder="e.g , walked 25 min , 2 cups of coffe , slept 8 hours"></textarea>
         <button type="submit" class="send">Parse with Ai</button>
         <button id="clear">Clear</button>
+    </div>
+    <div class="predefined">
+        <h3>Quick Habits from</h3>
+        <form>
+            Sleep(hours) : <input type="range" min="1" max="15">
+            running(km) : <input type="number" >
+            Water(ml) : <input type="number">
+            <button type="submit" class="send">Save to Entry</button>
+        </form>
+    </div>
+    <div class="json">
+        <h3>Parsed json preview</h3>
+         <form>
+            Sleep(hours) : <input type="range" min="1" max="15">
+            running(km) : <input type="number" >
+            Water(ml) : <input type="number">
+            <button type="submit" class="send">Save Entry</button>
+        </form>
     </div>
 </body>
 </html>
