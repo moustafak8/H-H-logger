@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link rel="stylesheet" href="../Css/user.css">
+    <script src="../script/axios.min.js" defer></script>
      <script
       src="https://kit.fontawesome.com/ad84a263ca.js"
       crossorigin="anonymous"
     ></script>
     <script src="../script/auth.js" defer></script>
+    <script src="../script/user.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             requireLogin();
@@ -49,12 +51,10 @@
     </div>
     <div class="json">
         <h3>Parsed json preview</h3>
-         <form>
-            Sleep(hours) : <input type="range" min="1" max="15">
-            running(km) : <input type="number" >
-            Water(ml) : <input type="number">
-            <button type="submit" class="send">Save Entry</button>
+         <form id="entries" class="entiries">
+            
         </form>
+        <button type="submit" class="send">Save Entry</button>
     </div>
 </body>
 </html>
