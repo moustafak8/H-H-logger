@@ -28,11 +28,34 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (parsed.items && Array.isArray(parsed.items)) {
                             const form = document.querySelector("#entries");
                             form.innerHTML = '';
+                            const habitPromises = [];
                             parsed.items.forEach(item => {
                                 const p = document.createElement("p");
                                 p.textContent = `${item.habit} : ${item.raw_span}`;
                                 form.appendChild(p);
+                                const habit = {
+                                    "name": item.habit,
+                                    "category": item.category,
+                                    "VALUE": item.value,
+                                    "unit": item.unit,
+                                    "user_id": userId,
+                                    "active": "1"
+                                };
+                                habitPromises.push(axios.post(BASE_URL + "habits/create", habit));
                             });
+                            if (habitPromises.length > 0) {
+                                Promise.all(habitPromises).then((responses) => {
+                                    const allSuccess = responses.every(response => response.data.status === 200);
+                                    if (allSuccess) {
+                                        console.log("All habits created successfully!");
+                                    } else {
+                                        console.error("Some habits failed to create");
+                                    }
+                                    // i used promises here to wait for all habit creation requests to be completed. since the one response may include multiple habits so in this case i have to send multiple axios post request to create all the habits.
+                                }).catch(error => {
+                                    console.error("Error creating habits:", error);
+                                });
+                            }
                         }
                     } catch (error) {
                         console.error("Error parsing JSON:", error);

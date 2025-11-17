@@ -31,7 +31,7 @@ class habitcontroller
             exit;
         }
         $data = json_decode(file_get_contents("php://input"), true);
-        $habit = ["name" => $data['name'], "category" => $data['category'], "unit" => $data['unit'],"VALUE" => $data['VALUE'], "user_id" => $data['user_id'], "active" => $data['active']];
+        $habit = ["name" => $data['name'], "category" => $data['category'], "unit" => $data['unit'], "VALUE" => $data['VALUE'], "user_id" => $data['user_id'], "active" => $data['active']];
         $new = new Habits($habit);
         $insertedId = $new->add($connection, $habit);
         if ($insertedId) {
