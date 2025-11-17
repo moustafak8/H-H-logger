@@ -72,3 +72,67 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("User not logged in");
     }
 });
+     // Quick form save button event listener
+        const quickSaveButton = document.querySelector('.predefined .send');
+        quickSaveButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sleep = document.getElementById('sleep').value;
+            const water = document.getElementById('water').value;
+            const running = document.getElementById('running').value;
+            const promises = [];
+
+            if (sleep !== "") {
+                promises.push(axios.post(BASE_URL + "habits/create", {
+                    name: "sleeping",
+                    category: "Health",
+                    unit: "hours",
+                    VALUE: parseFloat(sleep),
+                    user_id: userId,
+                    active: "1"
+                }));
+            }
+
+            if (water !== "") {
+                promises.push(axios.post(BASE_URL + "habits/create", {
+                    name: "drinking water",
+                    category: "Health",
+                    unit: "ml",
+                    VALUE: parseFloat(water),
+                    user_id: userId,
+                    active: "1"
+                }));
+            }
+
+            if (running !== "") {
+                promises.push(axios.post(BASE_URL + "habits/create", {
+                    name: "running",
+                    category: "Sport",
+                    unit: "km",
+                    VALUE: parseFloat(running),
+                    user_id: userId,
+                    active: "1"
+                }));
+            }
+
+            if (promises.length > 0) {
+                Promise.all(promises).then((responses) => {
+                    const allSuccess = responses.every(response => response.data.status === 200);
+                    if (allSuccess) {
+                        alert("Habits saved successfully!");
+                        document.getElementById('sleep').value = '';
+                        document.getElementById('water').value = '';
+                        document.getElementById('running').value = '';
+                    } else {
+                        console.error("Some habits failed to save");
+                    }
+                }).catch(error => {
+                    console.error("Error saving habits:", error);
+                });
+            } else {
+                alert("Please fill at least one habit field.");
+            }
+        });
+    
+
+            
+                
