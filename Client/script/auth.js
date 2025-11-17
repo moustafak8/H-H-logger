@@ -8,7 +8,7 @@ function logout() {
 }
 function requireLogin() {
   if (!isLoggedIn()) {
-    window.location.href = 'login.html';
+    window.location.href = '../login/login.html';
   }
 }
 

@@ -3,8 +3,7 @@ require_once(__DIR__ . "/../services/ResponsiveService.php");
 require_once(__DIR__ . "/../services/Ai_response.php");
 require_once(__DIR__ . "/../models/Entry.php");
 class AI_controler{
-    function passentry(){
-          global $connection;
+    function processEntry(){
         if ($_SERVER["REQUEST_METHOD"] != 'POST') {
             echo ResponseService::response(405, "Method Not Allowed");
             exit;
@@ -17,11 +16,28 @@ class AI_controler{
             echo ResponseService::response(500, ["error" => $parsed['error']]);
             return;
         }
-        $entryData = [
-            "entry_date" => $parsed['date'] ?? date('Y-m-d'),
+
+        echo ResponseService::response(200, [
+            "message" => "Entry processed successfully",
+            "parsed" => $parsed,
             "raw_text" => $data['raw_text'],
-            "parsed_json" => json_encode($parsed),
-            "parse_status" => $parsed['parse_status'] ?? 'failed',
+            "user_id" => $data['user_id'] ?? null
+        ]);
+    }
+
+    function saveEntry(){
+        global $connection;
+        if ($_SERVER["REQUEST_METHOD"] != 'POST') {
+            echo ResponseService::response(405, "Method Not Allowed");
+            exit;
+        }
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $entryData = [
+            "entry_date" => $data['parsed']['date'],
+            "raw_text" => $data['raw_text'],
+            "parsed_json" => json_encode($data['parsed']),
+            "parse_status" => $data['parsed']['parse_status'],
             "user_id" => $data['user_id'] ?? null
         ];
         $entry = new Entry($entryData);
@@ -29,9 +45,8 @@ class AI_controler{
 
         if ($insertedId) {
             echo ResponseService::response(200, [
-                "message" => "Entry processed and saved successfully",
-                "entry_id" => $insertedId,
-                "ai_response" => $parsed
+                "message" => "Entry saved successfully",
+                "entry_id" => $insertedId
             ]);
         } else {
             echo ResponseService::response(500, ["error" => "Failed to save entry"]);
