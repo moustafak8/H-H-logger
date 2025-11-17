@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "/../models/Habits.php");
 require_once(__DIR__ . "/../services/ResponsiveService.php");
+require_once(__DIR__ . "/../services/Return_Byuser.php");
 require_once(__DIR__ . "/../connection/connection.php");
 
 class habitcontroller
@@ -12,6 +13,15 @@ class habitcontroller
             $id = $_GET["id"];
             $car = Habits::find($connection, $id);
             echo ResponseService::response(200, $car->toArray());
+            return;
+        } elseif (isset($_GET["user_id"])) {
+            $user_id = $_GET["user_id"];
+            $habits = Returnservices::findbyuser($user_id);
+            $arr = [];
+            foreach ($habits as $habit) {
+                $arr[] = $habit->toArray();
+            }
+            echo ResponseService::response(200, $arr);
             return;
         } else {
             $cars = Habits::findAll($connection);
