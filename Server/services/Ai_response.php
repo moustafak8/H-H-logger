@@ -6,9 +6,10 @@ class Ai_response
     {
         global $apiKey;
 
+        $today = date('Y-m-d');
         $system = "You are a parser for a habit-tracking app. Return ONLY valid JSON (no extra text, no explanation). "
             . "Output must be a single JSON object with these fields: "
-            . "`date` (ISO YYYY-MM-DD or null), `items` (array of objects with habit,category of the habit ('Health' | 'sport' | 'based on the habit type'), value, unit, raw_span, confidence), "
+            . "`date` (ISO YYYY-MM-DD, use {$today}), `items` (array of objects with habit,category of the habit ('Health' | 'sport' | 'based on the habit type'), value, unit, raw_span, confidence), "
             . "`unrecognized_text` (string), `parse_status` ('success'|'partial'|'failed'). "
             . "If uncertain about a value, set confidence to a low number (0-1).";
 
