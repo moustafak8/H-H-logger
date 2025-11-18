@@ -246,6 +246,14 @@ header .logo i {
   color: #495057;
 }
 
+#chart-summary {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #007BFF;
+  text-align: center;
+}
+
 .habit-item {
   display: flex;
   justify-content: space-between;
@@ -282,6 +290,10 @@ header .logo i {
 
 .update-btn {
   background-color: #28a745;
+  color: white;
+}
+.delete-btn {
+  background-color: #ff4646;
   color: white;
 }
 

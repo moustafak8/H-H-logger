@@ -31,10 +31,54 @@ document.addEventListener("DOMContentLoaded", function () {
                 const form = document.querySelector("#entries");
                 form.innerHTML = "";
                 const habitPromises = [];
-                parsed.items.forEach((item) => {
-                  const p = document.createElement("p");
-                  p.textContent = `${item.habit} : ${item.raw_span}`;
-                  form.appendChild(p);
+                parsed.items.forEach((item, index) => {
+                  const habitDiv = document.createElement("div");
+                  habitDiv.className = "habit-item";
+                  habitDiv.innerHTML = `
+                    <span class="habit-name">${item.habit}</span> : <span class="habit-value">${item.raw_span}</span>
+                    <input type="text" class="habit-input hidden" value="${item.habit}">
+                    <button type="button" class="update-btn">Update</button>
+                    <button type="button" class="save-btn hidden">Save</button>
+                    <button type="button" class="cancel-btn hidden">Cancel</button>
+                  `;
+                  form.appendChild(habitDiv);
+
+                  const span = habitDiv.querySelector(".habit-name");
+                  const input = habitDiv.querySelector(".habit-input");
+                  const updateBtn = habitDiv.querySelector(".update-btn");
+                  const saveBtn = habitDiv.querySelector(".save-btn");
+                  const cancelBtn = habitDiv.querySelector(".cancel-btn");
+
+                  updateBtn.addEventListener("click", function () {
+                    span.classList.add("hidden");
+                    input.classList.remove("hidden");
+                    updateBtn.classList.add("hidden");
+                    saveBtn.classList.remove("hidden");
+                    cancelBtn.classList.remove("hidden");
+                    input.focus();
+                  });
+
+                  saveBtn.addEventListener("click", function () {
+                    const newName = input.value.trim();
+                    if (newName) {
+                      span.textContent = newName;
+                      currentParsedData.parsed.items[index].habit = newName;
+                    }
+                    span.classList.remove("hidden");
+                    input.classList.add("hidden");
+                    updateBtn.classList.remove("hidden");
+                    saveBtn.classList.add("hidden");
+                    cancelBtn.classList.add("hidden");
+                  });
+
+                  cancelBtn.addEventListener("click", function () {
+                    input.value = span.textContent;
+                    span.classList.remove("hidden");
+                    input.classList.add("hidden");
+                    updateBtn.classList.remove("hidden");
+                    saveBtn.classList.add("hidden");
+                    cancelBtn.classList.add("hidden");
+                  });
                   const habit = {
                     name: item.habit,
                     category: item.category,

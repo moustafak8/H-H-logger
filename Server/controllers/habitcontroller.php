@@ -102,8 +102,22 @@ class habitcontroller
             echo ResponseService::response(200, ["message" => "habit deleted successfully"]);
             return;
         } else {
-            echo ResponseService::response(500, ["message" => "failed to delete habit"]);
-            return;
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (isset($data['name'])) {
+                $name = $data['name'];
+                $user_id = $data['user_id'];
+                $row = Returnservices::deleteByName($name, $user_id);
+                if ($row) {
+                    echo ResponseService::response(200, ["message" => "habit deleted successfully"]);
+                    return;
+                } else {
+                    echo ResponseService::response(500, ["message" => "failed to delete habit"]);
+                    return;
+                }
+            } else {
+                echo ResponseService::response(400, ["message" => "Invalid delete parameters"]);
+                return;
+            }
         }
     }
 }
