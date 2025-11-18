@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . "/../models/Habits.php");
 require_once(__DIR__ . "/../services/ResponsiveService.php");
+require_once(__DIR__ . "/../services/Return_Byuser.php");
 require_once(__DIR__ . "/../connection/connection.php");
 
 class habitcontroller
@@ -12,6 +13,15 @@ class habitcontroller
             $id = $_GET["id"];
             $car = Habits::find($connection, $id);
             echo ResponseService::response(200, $car->toArray());
+            return;
+        } elseif (isset($_GET["user_id"])) {
+            $user_id = $_GET["user_id"];
+            $habits = Returnservices::findbyuser($user_id);
+            $arr = [];
+            foreach ($habits as $habit) {
+                $arr[] = $habit->toArray();
+            }
+            echo ResponseService::response(200, $arr);
             return;
         } else {
             $cars = Habits::findAll($connection);
@@ -44,9 +54,19 @@ class habitcontroller
     {
         global $connection;
         $data = json_decode(file_get_contents("php://input"), true);
-        $id = $data['id'];
-        $newdata = ["name" => $data['name'], "category" => $data['category'], "unit" => $data['unit'], "user_id" => $data['user_id'], "active" => $data['active']];
-        $row = Habits::update($connection, $id, $newdata);
+        if (isset($data['id'])) {
+            $id = $data['id'];
+            $newdata = ["name" => $data['name'], "category" => $data['category'], "unit" => $data['unit'], "user_id" => $data['user_id'], "active" => $data['active']];
+            $row = Habits::update($connection, $id, $newdata);
+        } elseif (isset($data['name']) && isset($data['new_name'])) {
+            $name = $data['name'];
+            $new_name = $data['new_name'];
+            $user_id = $data['user_id'];
+            $row = Returnservices::updateByName($name, $new_name, $user_id);
+        } else {
+            echo ResponseService::response(400, ["message" => "Invalid update parameters"]);
+            return;
+        }
         if ($row) {
             echo ResponseService::response(200, ["message" => "habit Updated successfully"]);
             return;
