@@ -330,3 +330,23 @@ header .logo i {
   border-radius: 4px;
   font-size: 16px;
 }
+
+#generate-chart {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#generate-chart:hover {
+  background-color: #0056b3;
+}
+
+#progress-chart {
+  margin-top: 20px;
+  max-width: 100%;
+  height: auto;
+}

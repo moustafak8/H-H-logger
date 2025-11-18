@@ -25,4 +25,18 @@ class Returnservices {
         $query->bind_param("sss", $new_name, $name, $user_id);
         return $query->execute();
     }
+
+    public static function getHabitProgress($user_id, $habit_name, $start_date, $end_date) {
+        global $connection;
+        $sql = "SELECT DATE(created_at) as date, SUM(VALUE) as value FROM habits WHERE user_id = ? AND name = ? AND DATE(created_at) BETWEEN ? AND ? GROUP BY DATE(created_at) ORDER BY DATE(created_at)";
+        $query = $connection->prepare($sql);
+        $query->bind_param("ssss", $user_id, $habit_name, $start_date, $end_date);
+        $query->execute();
+        $result = $query->get_result();
+        $progress = [];
+        while ($row = $result->fetch_assoc()) {
+            $progress[] = $row;
+        }
+        return $progress;
+    }
 }

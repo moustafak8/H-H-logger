@@ -9,6 +9,7 @@ $apis = [
     '/habits/create' => ['controller' => 'habitcontroller', 'method' => 'newhabit'],
     '/habits/update' => ['controller' => 'habitcontroller', 'method' => 'updatehabit'],
     '/habits/delete' => ['controller' => 'habitcontroller', 'method' => 'deletehabit'],
+    '/habits/progress' => ['controller' => 'habitcontroller', 'method' => 'getHabitProgress'],
     '/entries'         => ['controller' => 'entrycontroller', 'method' => 'getentries'],
     '/entries/create' => ['controller' => 'entrycontroller', 'method' => 'newentry'],
     '/entries/update' => ['controller' => 'entrycontroller', 'method' => 'updateentry'],

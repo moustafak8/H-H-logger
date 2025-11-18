@@ -75,6 +75,23 @@ class habitcontroller
             return;
         }
     }
+    function getHabitProgress()
+    {
+        global $connection;
+        if (!isset($_GET["user_id"]) || !isset($_GET["habit_name"]) || !isset($_GET["start_date"]) || !isset($_GET["end_date"])) {
+            echo ResponseService::response(400, ["message" => "Missing required parameters"]);
+            return;
+        }
+
+        $user_id = $_GET["user_id"];
+        $habit_name = $_GET["habit_name"];
+        $start_date = $_GET["start_date"];
+        $end_date = $_GET["end_date"];
+
+        $progress = Returnservices::getHabitProgress($user_id, $habit_name, $start_date, $end_date);
+        echo ResponseService::response(200, $progress);
+    }
+
     function deletehabit()
     {
         global $connection;
