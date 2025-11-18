@@ -8,7 +8,7 @@ class Returnservices {
         global $connection;
         $sql = "SELECT name, category, unit, user_id, active,VALUE FROM habits WHERE user_id = ? GROUP BY name";
         $query = $connection->prepare($sql);
-        $query->bind_param("s", $user_id); 
+        $query->bind_param("s", $user_id);
         $query->execute();
         $result = $query->get_result();
         $objects = [];
@@ -16,5 +16,13 @@ class Returnservices {
             $objects[] = new Habits($data);
         }
         return $objects;
+    }
+
+    public static function updateByName($name, $new_name, $user_id) {
+        global $connection;
+        $sql = "UPDATE habits SET name = ? WHERE name = ? AND user_id = ?";
+        $query = $connection->prepare($sql);
+        $query->bind_param("sss", $new_name, $name, $user_id);
+        return $query->execute();
     }
 }
