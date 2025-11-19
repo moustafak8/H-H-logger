@@ -9,10 +9,12 @@ $apis = [
     '/habits/create' => ['controller' => 'habitcontroller', 'method' => 'newhabit'],
     '/habits/update' => ['controller' => 'habitcontroller', 'method' => 'updatehabit'],
     '/habits/delete' => ['controller' => 'habitcontroller', 'method' => 'deletehabit'],
+    '/habits/progress' => ['controller' => 'habitcontroller', 'method' => 'getHabitProgress'],
     '/entries'         => ['controller' => 'entrycontroller', 'method' => 'getentries'],
     '/entries/create' => ['controller' => 'entrycontroller', 'method' => 'newentry'],
     '/entries/update' => ['controller' => 'entrycontroller', 'method' => 'updateentry'],
     '/entries/delete' => ['controller' => 'entrycontroller', 'method' => 'deleteentry'],
     '/entries/process' => ['controller' => 'AI_controler', 'method' => 'processEntry'],
     '/entries/save' => ['controller' => 'AI_controler', 'method' => 'saveEntry'],
+    '/entries/generate' => ['controller' => 'AI_controler', 'method' => 'weeklysummary'],
 ];

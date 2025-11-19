@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="../Css/user.css" />
+    <script src="../script/axios.min.js" defer></script>
+    <script src="../script/auth.js" defer></script>
+    <script src="../script/summary.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            requireLogin();
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-person-running">Habitify</i>
+        </a>
+    </header>
+    <button onclick="logout()" class="logout-button">Logout</button>
+    <nav class="sidebar">
+        <a href="index.html">HOME</a>
+        <a href="habit.html">Habits</a>
+        <a href="">History</a>
+        <a href="">Charts</a>
+        <a href="">Weekly summary</a>
+        <a href="">Nutrition Coach</a>
+    </nav>
+    <h1 class="title">Weekly Summary</h1>
+    <div class="text_input">
+        <div class="chart-controls">
+            <label for="habits-list">Select Habit:</label>
+            <select id="habits-list"></select>
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date">
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date">
+            <button id="generate-chart">Generate An AI Summary about your progress</button>
+        </div>
+        <div id="summary-display"></div>
+    </div>
+</body>
+
+</html>

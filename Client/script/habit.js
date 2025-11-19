@@ -12,6 +12,7 @@ function displayHabits(response) {
       <span class="habit-name">${habit.name}</span>
       <input type="text" class="habit-input hidden" value="${habit.name}">
       <button class="update-btn" data-name="${habit.name}">Update</button>
+      <button class="delete-btn" data-name="${habit.name}">Delete</button>
       <button class="save-btn hidden">Save</button>
       <button class="cancel-btn hidden">Cancel</button>
     `;
@@ -49,6 +50,15 @@ function displayHabits(response) {
       } else {
         cancelEdit(habitDiv);
       }
+    });
+  });
+  document.querySelectorAll(".delete-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const habitDiv = this.parentElement;
+      const habitname = habitDiv
+        .querySelector(".delete-btn")
+        .getAttribute("data-name");
+      deleteHabit(habitname);
     });
   });
 
@@ -91,7 +101,21 @@ function updateHabit(oldName, newName) {
     })
     .catch((error) => console.error(error));
 }
-
+function deleteHabit(habitname) {
+  axios
+    .post(BASE_URL + "habits/delete", {
+      name: habitname,
+      user_id: userId,
+    })
+    .then((response) => {
+      if (response.data.status === 200) {
+        fetchHabits();
+      } else {
+        alert("delete failed");
+      }
+    })
+    .catch((error) => console.error(error));
+}
 function fetchHabits() {
   axios
     .get(BASE_URL + "habits?user_id=" + userId)
