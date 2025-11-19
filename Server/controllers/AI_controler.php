@@ -74,4 +74,27 @@ class AI_controler{
              "summary" => $parsed['summary']
          ]);
     }
+    function Nutritioncoach(){
+        if ($_SERVER["REQUEST_METHOD"] != 'POST') {
+            echo ResponseService::response(405, "Method Not Allowed");
+            exit;
+        }
+        $data = json_decode(file_get_contents("php://input"), true);
+        $mealText = $data['text'] ?? '';
+        
+        if (empty($mealText)) {
+            echo ResponseService::response(400, ["error" => "Meal description is required"]);
+            return;
+        }
+        
+        $res = Ai_response::Nutritioncoach($mealText);
+        $parsed = json_decode($res, true);
+
+        if (isset($parsed['error'])) {
+            echo ResponseService::response(500, ["error" => $parsed['error']]);
+            return;
+        }
+
+        echo ResponseService::response(200, $parsed);
+    }
 }

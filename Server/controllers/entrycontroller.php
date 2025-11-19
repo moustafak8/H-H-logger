@@ -1,7 +1,9 @@
 <?php
 require_once(__DIR__ . "/../models/Entry.php");
 require_once(__DIR__ . "/../services/ResponsiveService.php");
+require_once(__DIR__ . "/../services/Return_entry.php");
 require_once(__DIR__ . "/../connection/connection.php");
+
 
 class entrycontroller
 {
@@ -13,7 +15,21 @@ class entrycontroller
             $entry = Entry::find($connection, $id);
             echo ResponseService::response(200, $entry->toArray());
             return;
-        } else {
+        } 
+        
+        elseif (isset($_GET["user_id"]) && isset($_GET["date"])) {
+            $user_id = $_GET["user_id"];
+            $date = $_GET["date"];
+            $entries = Return_entry::findentrybydate($user_id, $date);
+            $arr = [];
+            foreach ($entries as $entry) {
+                $arr[] = $entry->toArray();
+            }
+            echo ResponseService::response(200, $arr);
+            return;
+        } 
+            
+            else {
             $entries = Entry::findAll($connection);
             $arr = [];
             foreach ($entries as $entry) {
@@ -54,9 +70,9 @@ class entrycontroller
         $newdata = [
             "entry_date" => $data['entry_date'],
             "raw_text" => $data['raw_text'],
-            "parsed_json" => $data['parsed_json'] ,
+            "parsed_json" => $data['parsed_json'],
             "parse_status" => $data['parse_status'] ?? "pending",
-            "user_id" => $data['user_id'] 
+            "user_id" => $data['user_id']
         ];
         $row = Entry::update($connection, $id, $newdata);
         if ($row) {
@@ -82,4 +98,3 @@ class entrycontroller
         }
     }
 }
-?>

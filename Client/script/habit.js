@@ -58,7 +58,9 @@ function displayHabits(response) {
       const habitname = habitDiv
         .querySelector(".delete-btn")
         .getAttribute("data-name");
-      deleteHabit(habitname);
+      if (confirm("Are you sure you want to delete this habit?")) {
+        deleteHabit(habitname);
+      }
     });
   });
 
@@ -120,7 +122,6 @@ function fetchHabits() {
   axios
     .get(BASE_URL + "habits?user_id=" + userId)
     .then((response) => {
-      console.log(response.data);
       displayHabits(response.data);
     })
     .catch((error) => console.error(error));

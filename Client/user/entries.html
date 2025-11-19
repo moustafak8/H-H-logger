@@ -11,13 +11,10 @@
     </script>
     <link rel="stylesheet" href="../Css/user.css" />
     <script src="../script/axios.min.js" defer></script>
-    <script
-      src="https://kit.fontawesome.com/ad84a263ca.js"
-      crossorigin="anonymous"
-    ></script>
     <script src="../script/auth.js" defer></script>
-    <script src="../script/habit.js" defer></script>
+    <script src="../script/entreis.js" defer></script>
   </head>
+
   <body>
     <header>
       <a href="#" class="logo">
@@ -33,9 +30,15 @@
       <a href="weekly_summary.html">Weekly summary</a>
       <a href="nutrition.html">Nutrition Coach</a>
     </nav>
-    <h1 class="title">Your Habits</h1>
+    <h1 class="title">Entries History</h1>
     <div class="text_input">
-      <div id="habits-list"></div>
+      <div class="chart-controls">
+        <label for="date">Select Date:</label>
+        <input type="date" id="today_date" />
+        <button id="generate-chart">See your History</button>
+      </div>
+      <h2>Entries for selected date:</h2>
+      <div id="entries-list"></div>
     </div>
   </body>
 </html>

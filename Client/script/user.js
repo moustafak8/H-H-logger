@@ -35,79 +35,69 @@ document.addEventListener("DOMContentLoaded", function () {
                   const habitDiv = document.createElement("div");
                   habitDiv.className = "habit-item";
                   habitDiv.innerHTML = `
-                    <span class="habit-name">${item.habit}</span> : <span class="habit-value">${item.raw_span}</span>
-                    <input type="text" class="habit-input hidden" value="${item.habit}">
+                    <span class="habit-name">${item.habit}</span>:<span class="habit-value">${item.raw_span}</span>
+                    <input type="text" class="habit-input-name hidden" value="${item.habit}">
+                    <input type="text" class="habit-input-value hidden" value="${item.raw_span}">
                     <button type="button" class="update-btn">Update</button>
                     <button type="button" class="save-btn hidden">Save</button>
                     <button type="button" class="cancel-btn hidden">Cancel</button>
                   `;
                   form.appendChild(habitDiv);
 
-                  const span = habitDiv.querySelector(".habit-name");
-                  const input = habitDiv.querySelector(".habit-input");
+                  const spanName = habitDiv.querySelector(".habit-name");
+                  const spanValue = habitDiv.querySelector(".habit-value");
+                  const inputName = habitDiv.querySelector(".habit-input-name");
+                  const inputValue = habitDiv.querySelector(".habit-input-value");
                   const updateBtn = habitDiv.querySelector(".update-btn");
                   const saveBtn = habitDiv.querySelector(".save-btn");
                   const cancelBtn = habitDiv.querySelector(".cancel-btn");
 
                   updateBtn.addEventListener("click", function () {
-                    span.classList.add("hidden");
-                    input.classList.remove("hidden");
+                    spanName.classList.add("hidden");
+                    spanValue.classList.add("hidden");
+                    inputName.classList.remove("hidden");
+                    inputValue.classList.remove("hidden");
                     updateBtn.classList.add("hidden");
                     saveBtn.classList.remove("hidden");
                     cancelBtn.classList.remove("hidden");
-                    input.focus();
+                    inputName.focus();
                   });
 
                   saveBtn.addEventListener("click", function () {
-                    const newName = input.value.trim();
-                    if (newName) {
-                      span.textContent = newName;
+                    const newName = inputName.value.trim();
+                    const newValue = inputValue.value.trim();
+                    if (newName && newValue) {
+                      spanName.textContent = newName;
+                      spanValue.textContent = newValue;
                       currentParsedData.parsed.items[index].habit = newName;
+                      currentParsedData.parsed.items[index].raw_span = newValue;
+                      // Update value if it's numeric
+                      const numValue = parseFloat(newValue);
+                      if (!isNaN(numValue)) {
+                        currentParsedData.parsed.items[index].value = numValue;
+                      }
                     }
-                    span.classList.remove("hidden");
-                    input.classList.add("hidden");
+                    spanName.classList.remove("hidden");
+                    spanValue.classList.remove("hidden");
+                    inputName.classList.add("hidden");
+                    inputValue.classList.add("hidden");
                     updateBtn.classList.remove("hidden");
                     saveBtn.classList.add("hidden");
                     cancelBtn.classList.add("hidden");
                   });
 
                   cancelBtn.addEventListener("click", function () {
-                    input.value = span.textContent;
-                    span.classList.remove("hidden");
-                    input.classList.add("hidden");
+                    inputName.value = spanName.textContent;
+                    inputValue.value = spanValue.textContent;
+                    spanName.classList.remove("hidden");
+                    spanValue.classList.remove("hidden");
+                    inputName.classList.add("hidden");
+                    inputValue.classList.add("hidden");
                     updateBtn.classList.remove("hidden");
                     saveBtn.classList.add("hidden");
                     cancelBtn.classList.add("hidden");
                   });
-                  const habit = {
-                    name: item.habit,
-                    category: item.category,
-                    VALUE: item.value,
-                    unit: item.unit,
-                    user_id: userId,
-                    active: "1",
-                  };
-                  habitPromises.push(
-                    axios.post(BASE_URL + "habits/create", habit)
-                  );
                 });
-                if (habitPromises.length > 0) {
-                  Promise.all(habitPromises)
-                    .then((responses) => {
-                      const allSuccess = responses.every(
-                        (response) => response.data.status === 200
-                      );
-                      if (allSuccess) {
-                        console.log("All habits created successfully!");
-                      } else {
-                        console.error("Some habits failed to create");
-                      }
-                      // i used promises here to wait for all habit creation requests to be completed. since the one response may include multiple habits so in this case i have to send multiple axios post request to create all the habits.
-                    })
-                    .catch((error) => {
-                      console.error("Error creating habits:", error);
-                    });
-                }
               }
             } catch (error) {
               console.error("Error parsing JSON:", error);
@@ -129,10 +119,40 @@ document.addEventListener("DOMContentLoaded", function () {
         .post(BASE_URL + "entries/save", currentParsedData)
         .then((response) => {
           if (response.data.status === 200) {
-            alert("Entry saved successfully!");
-            document.querySelector(".text_input textarea").value = "";
-            document.querySelector("#entries").innerHTML = "";
-            currentParsedData = null;
+            // Create habits after saving entry
+            const habitPromises = currentParsedData.parsed.items.map((item) => {
+              const habit = {
+                name: item.habit,
+                category: item.category,
+                VALUE: item.value,
+                unit: item.unit,
+                user_id: userId,
+                active: "1",
+              };
+              return axios.post(BASE_URL + "habits/create", habit);
+            });
+
+            Promise.all(habitPromises)
+              .then((responses) => {
+                const allSuccess = responses.every(
+                  (response) => response.data.status === 200
+                );
+                if (allSuccess) {
+                  alert("Entry and habits saved successfully!");
+                } else {
+                  alert("Entry saved, but some habits failed to create.");
+                }
+                document.querySelector(".text_input textarea").value = "";
+                document.querySelector("#entries").innerHTML = "";
+                currentParsedData = null;
+              })
+              .catch((error) => {
+                console.error("Error creating habits:", error);
+                alert("Entry saved, but error creating habits.");
+                document.querySelector(".text_input textarea").value = "";
+                document.querySelector("#entries").innerHTML = "";
+                currentParsedData = null;
+              });
           } else {
             console.error("Failed to save entry:", response.data.error);
           }
