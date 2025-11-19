@@ -5,16 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Dashboard</title>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            requireLogin();
+        });
+    </script>
     <link rel="stylesheet" href="../Css/user.css" />
     <script src="../script/axios.min.js" defer></script>
     <script src="../script/auth.js" defer></script>
     <script src="../script/chart.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            requireLogin();
-        });
-    </script>
 </head>
 
 <body>

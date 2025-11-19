@@ -357,6 +357,8 @@ header .logo i {
 
 #generate-chart:hover {
   background-color: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px #0056b3;
 }
 
 #progress-chart {
