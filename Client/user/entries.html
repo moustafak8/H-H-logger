@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../Css/user.css" />
     <script src="../script/axios.min.js" defer></script>
     <script src="../script/auth.js" defer></script>
-    <script src="../script/entries.js" defer></script>
+    <script src="../script/entreis.js" defer></script>
   </head>
 
   <body>
@@ -34,9 +34,11 @@
     <div class="text_input">
       <div class="chart-controls">
         <label for="date">Select Date:</label>
-        <input type="date" id="date" />
+        <input type="date" id="today_date" />
         <button id="generate-chart">See your History</button>
       </div>
+      <h2>Entries for selected date:</h2>
+      <div id="entries-list"></div>
     </div>
   </body>
 </html>

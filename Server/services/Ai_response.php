@@ -11,6 +11,7 @@ class Ai_response
             . "Output must be a single JSON object with these fields: "
             . "`date` (ISO YYYY-MM-DD, use {$today}), `items` (array of objects with habit,category of the habit ('Health' | 'sport' | 'based on the habit type'), value, unit, raw_span, confidence), "
             . "`unrecognized_text` (string), `parse_status` ('success'|'partial'|'failed'). "
+            . "Always return the habit as a noun (e.g., 'sleeping', 'running', 'reading') regardless of the verb form in the input text. "
             . "If uncertain about a value, set confidence to a low number (0-1).";
 
         $userContent = "Parse this log into the required JSON format. Text: <<<" . $text . ">>>";

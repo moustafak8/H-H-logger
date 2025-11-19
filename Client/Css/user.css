@@ -374,3 +374,32 @@ header .logo i {
   border: 1px solid #ccc;
   background-color: #f9f9f9;
 }
+
+#entries-list {
+  margin-top: 20px;
+}
+
+.entry-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #090707;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.entry-item:hover {
+  background-color: #e9ecef;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.entry-item span {
+  flex-grow: 1;
+  font-weight: 500;
+}

@@ -58,7 +58,9 @@ function displayHabits(response) {
       const habitname = habitDiv
         .querySelector(".delete-btn")
         .getAttribute("data-name");
-      deleteHabit(habitname);
+      if (confirm("Are you sure you want to delete this habit?")) {
+        deleteHabit(habitname);
+      }
     });
   });
 

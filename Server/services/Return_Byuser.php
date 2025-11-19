@@ -2,6 +2,7 @@
 require_once(__DIR__ . "/ResponsiveService.php");
 require_once(__DIR__ . "/../connection/connection.php");
 require_once(__DIR__ . "/../models/Habits.php");
+require_once(__DIR__ . "/../models/Entry.php");
 
 class Returnservices
 {
