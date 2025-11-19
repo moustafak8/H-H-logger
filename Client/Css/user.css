@@ -17,7 +17,7 @@ header .logo {
   font-size: 25px;
   margin-left: -120px;
   font-weight: bolder;
-  color:#007BFF;
+  color: #007bff;
 }
 
 header .logo i {
@@ -49,7 +49,7 @@ header .logo i {
 }
 
 .sidebar a:hover {
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
 }
 
@@ -59,7 +59,7 @@ header .logo i {
   right: 20px;
   height: 40px;
   color: white;
-  background: #007BFF;
+  background: #007bff;
   border: none;
   font-size: 16px;
   font-weight: 600;
@@ -68,7 +68,7 @@ header .logo i {
   cursor: pointer;
   z-index: 1001;
 }
-.title{
+.title {
   margin-left: 250px;
 }
 
@@ -107,7 +107,7 @@ header .logo i {
 }
 
 .text_input .send {
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
 }
 
@@ -133,13 +133,13 @@ header .logo i {
 }
 
 .predefined {
- margin-left: 250px;
+  margin-left: 250px;
   margin-top: 20px;
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #dee2e6;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: calc(45vw - 100px);
   float: left;
 }
@@ -175,7 +175,7 @@ header .logo i {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   align-self: flex-start;
 }
@@ -191,7 +191,7 @@ header .logo i {
   background-color: #ffffff;
   border: 1px solid #dee2e6;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: calc(42vw - 100px);
   float: right;
 }
@@ -227,7 +227,7 @@ header .logo i {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   align-self: flex-start;
 }
@@ -250,7 +250,7 @@ header .logo i {
   margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
-  color: #007BFF;
+  color: #007bff;
   text-align: center;
 }
 
@@ -279,7 +279,9 @@ header .logo i {
   font-size: 16px;
 }
 
-.update-btn, .save-btn, .cancel-btn {
+.update-btn,
+.save-btn,
+.cancel-btn {
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
@@ -345,7 +347,7 @@ header .logo i {
 
 #generate-chart {
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
@@ -361,4 +363,12 @@ header .logo i {
   margin-top: 20px;
   max-width: 100%;
   height: auto;
+}
+#summary-display{
+  margin-top: 30px;
+  padding: 10px;
+  font-size: large;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
 }

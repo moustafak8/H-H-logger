@@ -16,4 +16,5 @@ $apis = [
     '/entries/delete' => ['controller' => 'entrycontroller', 'method' => 'deleteentry'],
     '/entries/process' => ['controller' => 'AI_controler', 'method' => 'processEntry'],
     '/entries/save' => ['controller' => 'AI_controler', 'method' => 'saveEntry'],
+    '/entries/generate' => ['controller' => 'AI_controler', 'method' => 'weeklysummary'],
 ];

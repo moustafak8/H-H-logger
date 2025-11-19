@@ -52,4 +52,26 @@ class AI_controler{
             echo ResponseService::response(500, ["error" => "Failed to save entry"]);
         }
     }
+    function weeklysummary(){
+        global $connection;
+        if ($_SERVER["REQUEST_METHOD"] != 'POST') {
+            echo ResponseService::response(405, "Method Not Allowed");
+            exit;
+        }
+         $data = json_decode(file_get_contents("php://input"), true);
+         $habit = $data['habit'] ;
+         $progressData = $data['data'] ;
+         $jsonData = json_encode($progressData);
+         $res = Ai_response::generateAIsummary($habit, $jsonData);
+         $parsed = json_decode($res, true);
+
+         if (isset($parsed['error'])) {
+             echo ResponseService::response(500, ["error" => $parsed['error']]);
+             return;
+         }
+
+         echo ResponseService::response(200, [
+             "summary" => $parsed['summary']
+         ]);
+    }
 }
