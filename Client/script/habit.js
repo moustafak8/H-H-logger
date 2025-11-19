@@ -122,7 +122,6 @@ function fetchHabits() {
   axios
     .get(BASE_URL + "habits?user_id=" + userId)
     .then((response) => {
-      console.log(response.data);
       displayHabits(response.data);
     })
     .catch((error) => console.error(error));

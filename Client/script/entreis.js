@@ -39,12 +39,6 @@ function displayEntries(entries) {
               <span>${habit.habit || "Unknown"}: ${habit.value || 0} ${
               habit.unit || ""
             }</span>
-               <button class="update-btn" data-name="${
-                 habit.name
-               }">Update</button>
-      <button class="delete-btn" data-name="${habit.name}">Delete</button>
-      <button class="save-btn hidden">Save</button>
-      <button class="cancel-btn hidden">Cancel</button>
             `;
             entriesList.appendChild(entryDiv);
           });

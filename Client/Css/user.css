@@ -325,6 +325,10 @@ header .logo i {
   display: none !important;
 }
 
+.show-inline-flex {
+  display: inline-flex !important;
+}
+
 .chart-controls {
   display: flex;
   align-items: center;
@@ -402,4 +406,325 @@ header .logo i {
 .entry-item span {
   flex-grow: 1;
   font-weight: 500;
+}
+.nutrition-coach-container {
+  margin-left: 250px;
+  padding: 20px;
+  max-width: calc(100vw - 270px);
+}
+
+.nutrition-coach-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  overflow: hidden;
+  color: #333;
+}
+
+.card-header {
+  padding: 20px;
+  background: #e9ecef;
+}
+
+.card-header h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header h2 i {
+  font-size: 28px;
+  color: #007bff;
+}
+
+.card-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.input-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+}
+
+.input-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: inherit;
+  background: #fff;
+  color: #333;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.input-section textarea::placeholder {
+  color: #6c757d;
+}
+
+.input-section textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.nutrition-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nutrition-btn:hover {
+  background: #0056b3;
+}
+
+.nutrition-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.nutrition-results {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  min-height: 50px;
+  display: none;
+}
+
+.nutrition-results.show {
+  display: block;
+}
+
+.nutrition-results .calories-section {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nutrition-results .calories-label {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #6c757d;
+  margin-bottom: 5px;
+}
+
+.nutrition-results .calories-value {
+  font-size: 28px;
+  font-weight: 600;
+  color: #007bff;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.nutrition-results .calories-unit {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.nutrition-results .suggestion-section {
+  margin-top: 15px;
+}
+
+.nutrition-results .suggestion-label {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #6c757d;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nutrition-results .suggestion-label i {
+  color: #007bff;
+}
+
+.nutrition-results .suggestion-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  border-left: 3px solid #007bff;
+}
+
+.nutrition-results .error-message {
+  color: #dc3545;
+  font-size: 16px;
+  padding: 10px;
+  background: #f8d7da;
+  border-radius: 4px;
+  border-left: 3px solid #dc3545;
+}
+
+.nutrition-results .loading-message {
+  text-align: center;
+  padding: 15px;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .predefined {
+    width: calc(50vw - 50px);
+  }
+
+  .json {
+    width: calc(50vw - 50px);
+  }
+
+  .nutrition-coach-container {
+    max-width: calc(100vw - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 5%;
+  }
+
+  header .logo {
+    margin-left: 0;
+    font-size: 20px;
+  }
+
+  .logout-button {
+    width: 120px;
+    font-size: 14px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .title,
+  .text_input,
+  .predefined,
+  .json,
+  .nutrition-coach-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .text_input {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .text_input h3,
+  .predefined h3,
+  .json h3 {
+    font-size: 20px;
+  }
+
+  .predefined,
+  .json {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .json {
+    margin-top: 20px;
+  }
+
+  .habit-item,
+  .entry-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .habit-item span,
+  .entry-item span {
+    flex-grow: 0;
+    width: 100%;
+  }
+
+  .habit-input {
+    width: 100%;
+  }
+
+  .update-btn,
+  .save-btn,
+  .cancel-btn,
+  .delete-btn {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .chart-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .chart-controls select,
+  .chart-controls input {
+    width: 100%;
+  }
+
+  #generate-chart {
+    width: 100%;
+  }
+
+  .nutrition-btn,
+  .text_input button,
+  .predefined button,
+  .json button {
+    padding: 12px 24px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .nutrition-results .calories-value {
+    font-size: 24px;
+  }
+
+  .card-header h2 {
+    font-size: 20px;
+  }
+
+  .card-header h2 i {
+    font-size: 24px;
+  }
 }
